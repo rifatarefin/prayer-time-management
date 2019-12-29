@@ -1,2 +1,4 @@
 # prayer-time-management
-![pin](pin.BMP) ![Blazer](output/test_images/4563.jpg)
+|  ![pin](pin.BMP)| ![ui](UI.png) |
+|:--:|:--:|
+| *pin diagram*  | *user interface* |
