@@ -1,4 +1,6 @@
 # prayer-time-management
+*1st prize winner of **Mrs Sultana Begum Best Innovative Project Award, 2018***
+
 |  ![pin](pin.BMP)| ![ui](UI.png) |
 |:--:|:--:|
 | *pin diagram*  | *user interface* |
@@ -28,4 +30,4 @@ We need seven 4 digit 7 segment display (five for prayer time and 2 for sunrise 
 
 Next, we need to handle the jammat time. This time vary from mosque to mosque. So, an attendant can update Jammat time of five times prayer time by our web interface. The clocks dedicated for Jammat time  are get updated now. We have used a RTC for displaying current time and introduced  LM 35 for displaying current temperature. Both the components are interfaced with NodeMCU. All displays are interfaced with microcontroller.  We have used shift registers for multiplexing purpose of the displays.
 
-The source sketch can be found [here](nodemcu.ino).
+The source sketch can be found [here](nodemcu.ino). You can watch a demo [here](https://www.youtube.com/watch?v=Wvu3Wlt1V9g).
