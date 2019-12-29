@@ -1,0 +1,160 @@
+<html>
+<body style="background-color:9999FF;">
+
+<hr />
+<hr />
+<h1><a name="top">IoT Based Smart Prayer Time Managment</a></h1>
+<hr />
+<hr />
+<br/><br/>
+<br/><br/>
+
+<p><a href="#b_f"><p style="font-size:110%">A Brief Description</p></a></p>
+<a href="#r_e"><p style="font-size:110%">Required Equipments</p></a>
+<a href="#h_w"><p style="font-size:110%">How it works?</p></a>
+<a href="#b_d"><p style="font-size:110%">Block Diagram</p></a>
+<a href="#a_g"><p style="font-size:110%">Algorithm</p></a>
+<a href="#p_d"><p style="font-size:110%">Detailed Pin Diagram</p></a>
+<a href="#p_f"><p style="font-size:110%">Problems Faced</p></a>
+<a href="#p_g"><p style="font-size:110%">Group Members Information</p></a>
+<a href="#p_h"><p style="font-size:110%">Course Teacher</p></a>
+
+
+<br/><br/>
+<br/><br/>
+<hr />
+<h2><a name="b_f">A Brief Description</a></h2>
+<hr />
+<p style="font-size:120%">
+  In this project we have developed a smart prayer time management system for mosque. We have found out that, five times(Fajr, Johr, Asr, Magrib, Esha) prayer system need to be updated regularly as well as Jammat time is maintained. In order to maintain this, they need to operate the clock manually everyday.
+  We have proposed a system, where an attendant do not need to update the prayer time (Owakt time) manually regularly. Again we have developed a web interface through which an attendant can update the Jammat time of that particular mosque.</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="r_e">Required Equipments</a></h2>
+<hr />
+<p style="font-size:120%">
+<ul>
+  <li><p style="font-size:120%">NodeMCU ESP-12
+    <ul>
+    <li><p style="font-size:110%">We have chosen this micro-controller because it contains an integrated Wi-Fi module . So, we do not need any external module and it also reduces  instrumental cost</p></li>
+
+    </ul>
+  </li>
+  <li><p style="font-size:120%">4 digit 7 segment display</p></li>
+  <li><p style="font-size:120%">Serial in-Parallel Out Shift registers (74HC595)</p></li>
+  <li><p style="font-size:120%">RTC ds 1307 (Real time clock chip)</p></li>
+  <li><p style="font-size:120%">LM 35 temperature sensor</p></li>
+  <li><p style="font-size:120%">Wires</p></li>
+</ul>
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="h_w">How it works?</a></h2>
+<hr />
+<p style="font-size:120%">
+We need seven 4 digit 7 segment display (five for prayer time and 2 for sunrise and sunset time). These times are static. Therefore, we have kept those times at NodeMCU ROM. At a particular day, the clock get updated by reading those static time from  ROM.
+</p>
+<p>
+Next, we need to handle the jammat time. This time vary from mosque to mosque. So, an attendant can update Jammat time of five times prayer time by our web interface. The clocks dedicated for Jammat time  are get updated now. We have used a RTC for displaying current time and introduced  LM 35 for displaying current temperature. Both the components are interfaced with NodeMCU. All displays are interfaced with microcontroller.  We have used shift registers for multiplexing purpose of the displays.
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="b_d">Block Diagram</a></h2>
+<hr />
+<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="blk.png" alt="pin diagram" align="top" width="720" height="500" />
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fig.1 Block Diagram
+</p>
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="a_g">Algorithm</a></h2>
+<hr />
+<br/><br/>
+<p style="font-size:120%">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Start<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Wifi module connects with a network<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.RTC checks today's date<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Micro-controller reads today's prayer schedule from ROM<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.while(today's date is unchanged)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.Prayer schedules are shown in the 7 segment displays<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.Wifi module waits for a jammat time update request<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.if(update request is received)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.Corresponding jammat times are updated<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10.Go to (3)<br/>
+</p>
+
+
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="p_d">Detailed Pin Diagram</a></h2>
+<hr />
+<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="pin.BMP" alt="pin diagram" align="top" width="720" height="720" />
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fig.2 Pin Diagram(Connections for other 7 segment displays are identical)
+</p>
+<br/><br/>
+<br/><br/>
+
+
+<hr />
+<h2><a name="p_f">Problems Faced</a></h2>
+<hr />
+
+<ol>
+  <li><p style="font-size:120%">For smaller number of displays, the displays illuminated properly. But for large number of displays blinking occured. To get rid of this we parallelly lit the displays.</p></li>
+  <li><p style="font-size:120%">The user must connect in the same network with which the device is connected.</p></li>
+  <li><p style="font-size:120%">To connect from any network over the internet, router configuration need to be changed. A port should be allocated for this device's ip.</p></li>
+
+
+  </ol>
+
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="p_g">Group Members Information</a></h2>
+<hr />
+<h3><p style="font-size:120%">Section B2: Group 6</p></h3>
+<ul>
+  <li><p style="font-size:120%">Alvi Md Ishmam (1305092)</p></li>
+  <li><p style="font-size:120%">sHusmoy Chowdhury (1305108)</p></li>
+  <li><p style="font-size:120%">Mohammad Rifat Arefin (1305112)</p></li>
+  <li><p style="font-size:120%">Raihan Mia (1305116)</p></li>
+  <li><p style="font-size:120%">Niazmorshed (1305118)</p></li>
+</ul>
+<br/><br/>
+<br/><br/>
+
+<hr />
+<h2><a name="p_h">Course Teachers</a></h2>
+<hr />
+<ol>
+  <li><p style="font-size:120%">Md. Abdus Sattar(Associate Professor, BUET)</p></li>
+  <li><p style="font-size:120%">Md Shariful Islam Bhuyan(Assistant Professor, BUET)</p></li>
+  <li><p style="font-size:120%">Mahmud Rahman(Lecturer, BUET)</p></li>
+</ol>
+
+<br/><br/>
+<br/><br/>
+
+<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/Wvu3Wlt1V9g?ecver=2" width="640" height="360" frameborder="0" gesture="media" allow="encrypted-media" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+
+<a href="#top"><p style="font-size:110%">Back to top</p></a>
